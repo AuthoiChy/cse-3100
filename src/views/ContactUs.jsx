@@ -1,38 +1,43 @@
 export default function ContactUs() {
-    // Handles form submission
-    const submitForm = (e) => {
-      e.preventDefault();
-      alert('Your form has been successfully submitted!');
-    };
-  
-    return (
-      <section className="contact-section text-center mt-5">
-        <h2>Reach Out to Us</h2>
-        <p>We'd love to hear from you! Kindly provide your details below.</p>
-        <form onSubmit={submitForm} className="contact-form">
-          <div className="input-group mb-3">
-            <label htmlFor="fullName" className="input-label">
-              Full Name
-            </label>
-            <input type="text" className="input-field" id="fullName" required />
+  // for clicking on submit button
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert('Form submitted!');
+  };
+
+  return (
+    <section className="text-center mt-4">
+      <h2>Contact Us</h2>
+      <p>"Kindly share the required information with us."</p>
+      <form onSubmit={handleSubmit} className="contact-form">
+        <div className="row mb-3">
+          <label htmlFor="name" className="col-sm-2 col-form-label text-start">
+            Name
+          </label>
+          <div className="col-sm-10">
+            <input type="text" className="form-control" id="name" required />
           </div>
-          <div className="input-group mb-3">
-            <label htmlFor="phoneNumber" className="input-label">
-              Phone Number
-            </label>
-            <input type="text" className="input-field" id="phoneNumber" required />
+        </div>
+        <div className="row mb-3">
+          <label htmlFor="phone" className="col-sm-2 col-form-label text-start">
+            Phone
+          </label>
+          <div className="col-sm-10">
+            <input type="text" className="form-control" id="phone" required />
           </div>
-          <div className="input-group mb-3">
-            <label htmlFor="emailAddress" className="input-label">
-              Email Address
-            </label>
-            <input type="email" className="input-field" id="emailAddress" required />
+        </div>
+        <div className="row mb-3">
+          <label htmlFor="email" className="col-sm-2 col-form-label text-start">
+            Email
+          </label>
+          <div className="col-sm-10">
+            <input type="email" className="form-control" id="email" required />
           </div>
-          <button type="submit" className="submit-btn btn btn-primary">
-            Send Message
-          </button>
-        </form>
-      </section>
-    );
-  }
-  
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </form>
+    </section>
+  );
+}
