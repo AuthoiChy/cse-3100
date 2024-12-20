@@ -1,0 +1,58 @@
+export default function AboutUs() {
+    return (
+      <section className="about-us">
+        <div className="about-container">
+          <h2>About Us</h2>
+          <div className="intro">
+            {/* Section for the history and mission of the organization */}
+            <h3>Our History</h3>
+            <p>
+              Welcome to <span className="highlight">Purrfect Adoption</span>! We are dedicated to finding loving homes for our furry friends. Our mission is to connect adorable cats with their forever families while creating a better world for animals.
+            </p>
+          </div>
+  
+          <div className="team-section">
+            {/* Section introducing the team members */}
+            <h3>Our Team</h3>
+            <div className="team-members">
+              <div className="team-member">
+                <img
+                  src="https://www.popehumane.org/wp-content/uploads/2021/06/Volunteers-cat-condos-better.jpg"
+                  alt="Luna"
+                  className="team-photo"
+                />
+                <p><strong>Name:</strong> Luna</p>
+                <p><strong></strong> Founder</p>
+              </div>
+              <div className="team-member">
+                <img
+                  src="data:image/jpeg;base64,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"
+                  alt="Volunteer 1"
+                  className="team-photo"
+                />
+                <p><strong>Name:</strong> Nora</p>
+                <p><strong></strong> Volunteer</p>
+              </div>
+              <div className="team-member">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFKrqNqzT4mV3iVPIjKQHIwe3zVel8d57CEw&s"
+                  alt="Volunteer 2"
+                  className="team-photo"
+                />
+                <p><strong>Name:</strong> Hartz</p>
+                <p><strong></strong> Coordinator</p>
+              </div>
+            </div>
+          </div>
+  
+          <div className="closing">
+            {/* Section for the mission statement */}
+            <h3>Our Mission</h3>
+            <p>
+            Thank you for visiting our website! As fellow cat lovers, your kindness and support help us create a world where every cat is cherished and receives the love and care they truly deserve. Together, we can make a lasting difference in their lives.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
