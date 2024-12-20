@@ -1,54 +1,63 @@
 import { useEffect, useState } from 'react';
 
-const featuredCats = [
-  { name: 'Whiskers', age: '2' },
-  { name: 'Mittens', age: '2' },
-  { name: 'Shadow', age: '1' },
+const highlightedCats = [
+  { name: 'Luna', age: '3', type: 'Sphynx' },
+  { name: 'Bella', age: '2', type: 'Persian' },
+  { name: 'Leo', age: '1', type: 'Abyssinian' },
 ];
 
-export default function Home() {
-  const [cats, setCats] = useState([]);
+export default function Homepage() {
+  const [catProfiles, setCatProfiles] = useState([]);
 
   useEffect(() => {
-    // Fetch cat images from an API endpoint and assign it to the featuredCats list
-    const fetchCatImages = async () => {
+    // Fetch random images for the highlighted cat profiles
+    const loadCatImages = async () => {
       try {
-        const responses = await Promise.all(featuredCats.map(() => fetch('https://api.thecatapi.com/v1/images/search').then((res) => res.json())));
-        const catsWithImages = featuredCats.map((cat, index) => ({
+        const imageResults = await Promise.all(
+          highlightedCats.map(() =>
+            fetch('https://api.thecatapi.com/v1/images/search').then((res) => res.json())
+          )
+        );
+
+        const profilesWithImages = highlightedCats.map((cat, idx) => ({
           ...cat,
-          image: responses[index][0].url,
+          photo: imageResults[idx][0].url,
         }));
 
-        setCats(catsWithImages);
-      } catch (error) {
-        console.error('Error fetching cat images:', error);
+        setCatProfiles(profilesWithImages);
+      } catch (err) {
+        console.error('Failed to fetch cat images:', err);
       }
     };
 
-    fetchCatImages();
+    loadCatImages();
   }, []);
 
   return (
     <>
-      <section className="text-center mt-4">
-        <h2>Welcome to Purrfect Adoption</h2>
+      <section className="intro-section text-center mt-4">
+        <h2>Discover Your Purrfect Companion</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas luc Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas luc Lorem
-          ipsum dolor sit amet, consectetur adipiscing elit. Maecenas luc
+          Explore our adorable selection of cats looking for loving homes. Each one has a unique personality and story waiting to be shared.
         </p>
       </section>
 
-      <section className="mt-5">
-        <h2>Featured cats</h2>
-        <div className="mt-2 row g-4" id="cats-container"></div>
-        <div className="mt-2 row g-4" id="cats-container">
-          {cats.map((cat, i) => (
-            <div key={i} className="col-md-4">
-              <div className="cat-card">
-                <img src={cat.image} alt={cat.name} className="img-fluid mb-2" style={{ borderRadius: '8px', height: '200px', objectFit: 'cover' }} />
-                <div className="cat-info">
-                  <h3 className="h5 mb-1">{cat.name}</h3>
-                  <p className="mb-0">Age: {cat.age}</p>
+      <section className="featured-section mt-5">
+        <h2>Meet Our Stars</h2>
+        <div className="row g-4 mt-2" id="featured-cats-container">
+          {catProfiles.map((profile, idx) => (
+            <div key={idx} className="col-md-4">
+              <div className="profile-card">
+                <img
+                  src={profile.photo}
+                  alt={profile.name}
+                  className="img-fluid mb-2"
+                  style={{ borderRadius: '10px', height: '200px', objectFit: 'cover' }}
+                />
+                <div className="profile-details">
+                  <h3 className="h5 mb-1">{profile.name}</h3>
+                  <p className="mb-0">Age: {profile.age}</p>
+                  <p className="mb-0">Type: {profile.type}</p>
                 </div>
               </div>
             </div>
